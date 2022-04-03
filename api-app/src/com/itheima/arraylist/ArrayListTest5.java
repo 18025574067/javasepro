@@ -23,5 +23,13 @@ public class ArrayListTest5 {
         movies.add(m2);
         movies.add(m3);
         System.out.println(movies);
+        // 4. 遍历电影类型的集合中的每个对象，访问它的信息即可
+        for (int i = 0; i < movies.size(); i++) {
+            Movie m = movies.get(i);
+            System.out.println("电影名称：" + m.getName());
+            System.out.println("电影排名：" + m.getScore());
+            System.out.println("电影主演：" + m.getActor());
+            System.out.println("-------------------");
+        }
     }
 }
