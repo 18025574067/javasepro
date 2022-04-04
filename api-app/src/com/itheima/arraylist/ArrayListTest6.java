@@ -42,15 +42,15 @@ public class ArrayListTest6 {
 
     /**
      * 根据学生学号返回该学生的全部信息
-     * @param Students 存储学生对象的集合
-     * @param studentNumber 要搜索的学生学号
+     * @param students 存储学生对象的集合
+     * @param studyStudent 要搜索的学生学号
      * @return 学生对象 | null
      */
-    public static Student getStudentById(ArrayList<Student> students, String studentNumber){
+    public static Student getStudentById(ArrayList<Student> students, String studyStudent){
         // 1. 遍历集合
         for (int i = 0; i < students.size(); i++) {
             Student s = students.get(i);
-            if (s.getStudyNumber().equals(studentNumber)){
+            if (s.getStudyNumber().equals(studyStudent)){
                 return s;
             }
         }
