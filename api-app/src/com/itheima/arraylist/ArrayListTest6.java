@@ -1,6 +1,7 @@
 package com.itheima.arraylist;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
     案例：学生信息系统：展示数据，并按照学号完成搜索
@@ -32,6 +33,11 @@ public class ArrayListTest6 {
 
         }
         // 4. 按照学号完成搜索功能
+        Scanner sc = new Scanner(System.in);
+        while (true) {
+            Student student = getStudentById(students, "20180303");
+            System.out.println(student);
+        }
     }
 
     /**
@@ -40,8 +46,15 @@ public class ArrayListTest6 {
      * @param studentNumber 要搜索的学生学号
      * @return 学生对象 | null
      */
-    public static Student getStudentById(ArrayList<Student> Students, String studentNumber){
-
+    public static Student getStudentById(ArrayList<Student> students, String studentNumber){
+        // 1. 遍历集合
+        for (int i = 0; i < students.size(); i++) {
+            Student s = students.get(i);
+            if (s.getStudyNumber().equals(studentNumber)){
+                return s;
+            }
+        }
+        return null;
 
 
 
