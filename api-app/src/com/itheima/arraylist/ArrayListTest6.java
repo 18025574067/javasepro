@@ -35,6 +35,7 @@ public class ArrayListTest6 {
         // 4. 按照学号完成搜索功能
         Scanner sc = new Scanner(System.in);
         while (true) {
+            System.out.println("请您输入学号查询学生：");
             Student student = getStudentById(students, "20180303");
             System.out.println(student);
         }
