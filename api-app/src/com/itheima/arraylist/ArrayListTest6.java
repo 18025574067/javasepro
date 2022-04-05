@@ -30,14 +30,23 @@ public class ArrayListTest6 {
         for (int i = 0; i < students.size(); i++) {
             Student s = students.get(i);
             System.out.println(s.getStudyNumber() + "\t" + s.getName() + "\t\t" + s.getAge() + "\t\t" + s.getClassNumber());
-
         }
+
         // 4. 按照学号完成搜索功能
         Scanner sc = new Scanner(System.in);
         while (true) {
             System.out.println("请您输入学号查询学生：");
-            Student student = getStudentById(students, "20180303");
-            System.out.println(student);
+            String studyStudent = sc.next();
+            // 5. 调用方法查询
+            Student s = getStudentById(students, studyStudent);
+            // 6. 判断是否存在学生对象地址
+            if (s == null){
+                System.out.println("对不起，查无此人！");
+            }else {
+                System.out.println("您查询的学生信息如下：");
+                System.out.println(s.getStudyNumber() + "\t" + s.getName() + "\t\t" + s.getAge() + "\t\t" + s.getClassNumber());
+
+            }
         }
     }
 
@@ -56,11 +65,5 @@ public class ArrayListTest6 {
             }
         }
         return null;
-
-
-
-
-
-
     }
 }
