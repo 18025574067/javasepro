@@ -25,13 +25,28 @@ public class ArrayListTest6 {
         students.add(new Student("20180305", "梅超风", 26, "神经科2班"));
 
         // 3. 遍历集合展示学生信息
+        System.out.println("学号 \t\t 姓名 \t\t 年龄 \t\t 班级");
         for (int i = 0; i < students.size(); i++) {
             Student s = students.get(i);
-            System.out.println("学号：" + s.getStudyNumber());
-            System.out.println("姓名：" + s.getName());
-            System.out.println("年龄：" + s.getAge());
-            System.out.println("班级：" + s.getClassNumber());
-            System.out.println("=========================");
+            System.out.println(s.getStudyNumber() + "\t" + s.getName() + "\t\t" + s.getAge() + "\t\t" + s.getClassNumber());
+
         }
+        // 4. 按照学号完成搜索功能
+    }
+
+    /**
+     * 根据学生学号返回该学生的全部信息
+     * @param Students 存储学生对象的集合
+     * @param studentNumber 要搜索的学生学号
+     * @return 学生对象 | null
+     */
+    public static Student getStudentById(ArrayList<Student> Students, String studentNumber){
+
+
+
+
+
+
+
     }
 }
