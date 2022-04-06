@@ -18,5 +18,17 @@ public class ATMSystem {
         System.out.println("2. 注册账户");
         Scanner sc = new Scanner(System.in);
         System.out.println("请您进行操作： ");
+
+        int command = sc.nextInt();
+        switch (command){
+            case 1:
+                // 用户登录
+                break;
+            case 2:
+                // 用户注册
+                break;
+            default:
+                System.out.println("您输入的操作不存在！！");
+        }
     }
 }
