@@ -13,26 +13,33 @@ public class ATMSystem {
         ArrayList<Account> accounts = new ArrayList<>();
 
         // 3. 展示系统的首页（欢迎页）
+        Scanner sc = new Scanner(System.in);
         while (true) {
             System.out.println("=============铜盂忠诚ATM系统==============");
             System.out.println("1. 账户登录");
             System.out.println("2. 注册账户");
-            Scanner sc = new Scanner(System.in);
             System.out.println("请您进行操作： ");
 
             int command = sc.nextInt();
             switch (command){
                 case 1:
                     // 用户登录
-                    System.out.println("用户登录");
                     break;
                 case 2:
-                    // 用户注册
-                    System.out.println("注册账户");
+                    // 用户注册(ALT + ENTER)
+                    register(accounts);
                     break;
                 default:
                     System.out.println("您输入的操作不存在！！");
             }
         }
+    }
+
+    /**
+        用户开启功能的实现
+     * @param accounts 接收的账户集合
+     */
+    private static void register(ArrayList<Account> accounts) {
+        System.out.println("=================系统开启功能=====================");
     }
 }
