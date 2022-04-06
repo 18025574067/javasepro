@@ -27,7 +27,7 @@ public class ATMSystem {
                     break;
                 case 2:
                     // 用户注册(ALT + ENTER)
-                    register(accounts);
+                    register(accounts, sc);
                     break;
                 default:
                     System.out.println("您输入的操作不存在！！");
@@ -39,7 +39,33 @@ public class ATMSystem {
         用户开启功能的实现
      * @param accounts 接收的账户集合
      */
-    private static void register(ArrayList<Account> accounts) {
+    private static void register(ArrayList<Account> accounts, Scanner sc) {
         System.out.println("=================系统开启功能=====================");
+        // 1. 创建账户对象，用于后期封装账户信息
+        Account account = new Account();
+
+        // 2. 录入这个账户的信息，注入到账户对象中去
+        System.out.println("请您输入账户的用户名：");
+        String userName =  sc.next();
+        account.setUserName(userName);
+
+        while (true) {
+            System.out.println("请您输入账户的密码：");
+            String passWord = sc.next();
+            System.out.println("请您再次输入账户的密码：");
+            String okPassWord = sc.next();
+            if (okPassWord.equals(passWord)){
+                // 密码通过认证
+                account.setPassWord(passWord);
+                break;
+            }else {
+                System.out.println("您输入的密码再次不一致！");
+            }
+        }
+
+
+        // 3. 把账户对象添加到集合中去
+
+
     }
 }
