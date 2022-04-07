@@ -70,28 +70,30 @@ public class ATMSystem {
         // 3. 为账户随机生成一个8位卡号，与集合中的元素不重复
         String cardId = getRandomCardId(accounts);
 
-
         // 3. 把账户对象添加到集合中去
-
-
+        account.setCardId(cardId);
     }
 
     /**
      * 为账户生成与其它账户卡号不相同的号码
-     * @return
+     * @return 生成一个不重复的卡号
      */
     private static String getRandomCardId(ArrayList<Account> accounts) {
-        // 1. 生成 8 位数字
-        String cardId = "";
         Random r = new Random();
-        for (int i = 0; i < 8; i++) {
-            cardId += r.nextInt(10);
+        // 1. 生成 8 位数字
+        while (true) {
+            String cardId = "";
+            for (int i = 0; i < 8; i++) {
+                cardId += r.nextInt(10);
+            }
+
+            // 2. 判断这个卡号是否与账户卡号重复了
+            Account acc = getAccountByCardId(cardId, accounts);
+            if (acc == null){
+                // 说明cardId没有重复，是一个新卡号，可以使用这个卡号作为新注册用户的卡号
+                return cardId;
+            }
         }
-
-        // 2. 判断这个卡号是否与帐户卡号重复了
-
-
-        return cardId;
     }
 
     /**
@@ -101,6 +103,12 @@ public class ATMSystem {
      * @return 帐户卡号 | null
      */
     private static Account getAccountByCardId(String cardId, ArrayList<Account> accounts){
+        for (int i = 0; i < accounts.size(); i++) {
+            Account acc = accounts.get(i);
+            if (acc.getCardId().equals(cardId)){
+                return acc;
+            }
+        }
         return null;
     }
 }
