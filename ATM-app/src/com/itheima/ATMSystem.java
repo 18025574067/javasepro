@@ -56,16 +56,36 @@ public class ATMSystem {
             String okPassWord = sc.next();
             if (okPassWord.equals(passWord)){
                 // 密码通过认证
-                account.setPassWord(passWord);
-                break;
+                account.setPassWord(okPassWord);
+                break; // 密码已经正确，退出死循环
             }else {
-                System.out.println("您输入的密码再次不一致！");
+                System.out.println("您再次输入的密码再次不一致！");
             }
         }
+        System.out.println("请您输入当日限额：");
+        double quotaMoney = sc.nextDouble();
+        account.setQuotaMoney(quotaMoney);
+
+        // 3. 为账户随机生成一个8位卡号，与集合中的元素不重复
+        String cardId = getRandomCardId();
 
 
         // 3. 把账户对象添加到集合中去
 
 
+    }
+
+    /**
+     * 为账户生成与其它账户卡号不相同的号码
+     * @return
+     */
+    private static String getRandomCardId() {
+        // 1. 生成 8 位数字
+        String CardId = "";
+        for (int i = 0; i < 8; i++) {
+
+        }
+
+        return null;
     }
 }
