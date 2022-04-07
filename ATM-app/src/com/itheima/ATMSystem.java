@@ -25,6 +25,7 @@ public class ATMSystem {
             switch (command){
                 case 1:
                     // 用户登录
+                    login(accounts, sc);
                     break;
                 case 2:
                     // 用户注册(ALT + ENTER)
@@ -37,11 +38,51 @@ public class ATMSystem {
     }
 
     /**
-        用户开启功能的实现
+     * 用户登录功能
+     * @param accounts 所有账户的集合
+     * @param sc 扫描器
+     */
+    private static void login(ArrayList<Account> accounts, Scanner sc) {
+        System.out.println("=================系统登录功能=====================");
+        // 1. 先判断系统中是否有账户，如果没有提醒并退出
+        if (accounts.size() == 0){
+            System.out.println("对不起，当前系统无用户，请先注册再登录～～～");
+            return; // 卫语言格式，解决方法的执行。
+        }
+
+        // 2. 正式进入登录操作
+        while (true) {
+            System.out.println("请输入登录卡号：");
+            String cardId = sc.next();
+
+            // 3. 判断用户是否存在, 根据卡号去集合中查询对象
+            Account acc = getAccountByCardId(cardId, accounts);
+            if (acc != null){
+                while (true) {
+                    // 卡号存在
+                    // 4. 让用户输入密码，并认证
+                    System.out.println("请您输入密码：");
+                    String passWord = sc.next();
+                    // 判断密码是否正确
+                    if (acc.getPassWord().equals(passWord)){
+                        // 登录成功了
+
+                    }else {
+                        System.out.println("您输入的密码有误，请重新输入：");
+                    }
+                }
+            }else {
+                System.out.println("对不起，系统中不存在此用户，请重新输入：");
+            }
+        }
+    }
+
+    /**
+        用户注册功能的实现
      * @param accounts 接收的账户集合
      */
     private static void register(ArrayList<Account> accounts, Scanner sc) {
-        System.out.println("=================系统开启功能=====================");
+        System.out.println("=================系统开户功能=====================");
         // 1. 创建账户对象，用于后期封装账户信息
         Account account = new Account();
 
@@ -67,11 +108,13 @@ public class ATMSystem {
         double quotaMoney = sc.nextDouble();
         account.setQuotaMoney(quotaMoney);
 
-        // 3. 为账户随机生成一个8位卡号，与集合中的元素不重复
+        // 为账户随机生成一个8位卡号，与集合中的元素不重复(独立功能，做为方法)
         String cardId = getRandomCardId(accounts);
+        account.setCardId(cardId);
 
         // 3. 把账户对象添加到集合中去
-        account.setCardId(cardId);
+        accounts.add(account);
+        System.out.println("恭喜您，" + userName + "(先生/女士)， 您的账户开户成功，卡号为：" + cardId + ", 请妥善保管。");
     }
 
     /**
@@ -103,12 +146,11 @@ public class ATMSystem {
      * @return 帐户卡号 | null
      */
     private static Account getAccountByCardId(String cardId, ArrayList<Account> accounts){
-        for (int i = 0; i < accounts.size(); i++) {
-            Account acc = accounts.get(i);
-            if (acc.getCardId().equals(cardId)){
+        for (Account acc : accounts) {
+            if (acc.getCardId().equals(cardId)) {
                 return acc;
             }
         }
-        return null;
+        return null; // 表示查无此账户
     }
 }
