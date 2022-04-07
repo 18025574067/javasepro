@@ -66,7 +66,8 @@ public class ATMSystem {
                     // 判断密码是否正确
                     if (acc.getPassWord().equals(passWord)){
                         // 登录成功了
-
+                        System.out.println("恭喜您：" + acc.getUserName() + "先生/女士登录成功，您的卡号为" + acc.getCardId());
+                        // 查询，取款，转账 ...
                     }else {
                         System.out.println("您输入的密码有误，请重新输入：");
                     }
