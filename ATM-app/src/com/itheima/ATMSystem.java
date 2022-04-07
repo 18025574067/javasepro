@@ -69,6 +69,7 @@ public class ATMSystem {
                         System.out.println("恭喜您：" + acc.getUserName() + "先生/女士登录成功，您的卡号为" + acc.getCardId());
                         // 查询，取款，转账 ...
                         showUserCommand(sc, acc);
+                        return; // 干掉登录方法
                     }else {
                         System.out.println("您输入的密码有误，请重新输入：");
                     }
@@ -113,7 +114,8 @@ public class ATMSystem {
                     break;
                 case 6:
                     // 退出操作
-                    break;
+                    System.out.println("退出成功，欢迎下次光临～～～");
+                    return; // 干掉当前方法
                 case 7:
                     // 销户操作
                     break;
@@ -127,6 +129,11 @@ public class ATMSystem {
      * 展示当前登录用户信息
      */
     private static void showAccount(Account acc) {
+        System.out.println("=================当前账户信息如下=====================");
+        System.out.println("用户名：" + acc.getUserName());
+        System.out.println("卡号：" + acc.getCardId());
+        System.out.println("余额：" + acc.getMoney());
+        System.out.println("当日限额：" + acc.getQuotaMoney());
 
     }
 
