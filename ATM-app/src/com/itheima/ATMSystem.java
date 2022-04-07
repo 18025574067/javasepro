@@ -68,7 +68,7 @@ public class ATMSystem {
                         // 登录成功了
                         System.out.println("恭喜您：" + acc.getUserName() + "先生/女士登录成功，您的卡号为" + acc.getCardId());
                         // 查询，取款，转账 ...
-                        showUserCommand(sc);
+                        showUserCommand(sc, acc);
                     }else {
                         System.out.println("您输入的密码有误，请重新输入：");
                     }
@@ -82,40 +82,52 @@ public class ATMSystem {
     /**
         展示用户操作页
      */
-    private static void showUserCommand(Scanner sc) {
-        System.out.println("===============用户操作页=====================");
-        System.out.println("1. 查询帐户");
-        System.out.println("2. 存款");
-        System.out.println("3. 取款");
-        System.out.println("4. 转账");
-        System.out.println("5. 修改密码");
-        System.out.println("6. 退出");
-        System.out.println("7. 注销账户");
-        System.out.println("请选择：");
-        int command = sc.nextInt();
-        switch (command){
-            case 1:
-                // 查询操作
-                break;
-            case 2:
-                // 存款操作
-                break;
-            case 3:
-                // 取款操作
-                break;
-            case 4:
-                // 转账操作
-                break;
-            case 5:
-                // 修改密码操作
-                break;
-            case 6:
-                // 退出操作
-                break;
-            case 7:
-                // 销户操作
-                break;
+    private static void showUserCommand(Scanner sc, Account acc) {
+        while (true) {
+            System.out.println("===============用户操作页=====================");
+            System.out.println("1. 查询帐户");
+            System.out.println("2. 存款");
+            System.out.println("3. 取款");
+            System.out.println("4. 转账");
+            System.out.println("5. 修改密码");
+            System.out.println("6. 退出");
+            System.out.println("7. 注销账户");
+            System.out.println("请选择：");
+            int command = sc.nextInt();
+            switch (command){
+                case 1:
+                    // 查询操作(展示当前登录账户)
+                    showAccount(acc);
+                    break;
+                case 2:
+                    // 存款操作
+                    break;
+                case 3:
+                    // 取款操作
+                    break;
+                case 4:
+                    // 转账操作
+                    break;
+                case 5:
+                    // 修改密码操作
+                    break;
+                case 6:
+                    // 退出操作
+                    break;
+                case 7:
+                    // 销户操作
+                    break;
+                default:
+                    System.out.println("您的输入有误！");
+            }
         }
+    }
+
+    /**
+     * 展示当前登录用户信息
+     */
+    private static void showAccount(Account acc) {
+
     }
 
     /**
