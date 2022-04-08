@@ -102,6 +102,7 @@ public class ATMSystem {
                     break;
                 case 2:
                     // 存款操作
+                    depositMoney(acc, sc);
                     break;
                 case 3:
                     // 取款操作
@@ -126,6 +127,24 @@ public class ATMSystem {
     }
 
     /**
+     * 存款功能
+     * @param acc 当前账户对象
+     * @param sc 扫描器
+     */
+    private static void depositMoney(Account acc, Scanner sc) {
+        System.out.println("=================用户存款功能=====================");
+        System.out.println("请您输入存款金额：");
+        double money = sc.nextDouble();
+
+        // 存款金额 = 原来的金额 + 存进去多少钱
+        acc.setMoney(acc.getMoney() + money);
+
+        System.out.println("恭喜您，存款成功，当前账户信息如下：");
+        showAccount(acc);
+
+    }
+
+    /**
      * 展示当前登录用户信息
      */
     private static void showAccount(Account acc) {
@@ -133,7 +152,7 @@ public class ATMSystem {
         System.out.println("用户名：" + acc.getUserName());
         System.out.println("卡号：" + acc.getCardId());
         System.out.println("余额：" + acc.getMoney());
-        System.out.println("当日限额：" + acc.getQuotaMoney());
+        System.out.println("取款限额：" + acc.getQuotaMoney());
 
     }
 
