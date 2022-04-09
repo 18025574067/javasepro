@@ -132,9 +132,28 @@ public class ATMSystem {
      * 转账功能实现
      * @param acc 当前账户
      * @param sc 扫描器
+     * @param accounts 存储所有账户的集合
      */
     private static void transferMoney(Account acc, Scanner sc, ArrayList<Account> accounts) {
+        System.out.println("=================用户转账功能=====================");
+        // 1. 判断集合中是否有两个账户
+        if (accounts.size() < 2){
+            System.out.println("当前系统中少于2个账户，请添加账户");
+            return; // 结束当前方法
+        }
+        // 2. 判断账户中是否有钱
+        if (acc.getMoney() == 0){
+            System.out.println("对不起，您自己都钱，就别转账了～～");
+            return; // 结束当前方法
+        }
+        // 3. 真正开始转账
+        System.out.println("请您输入对方卡号：");
+        String cardId = sc.next();
+        // 4. 判断卡号是否存在
+        Account account = getAccountByCardId(cardId, accounts);
+        if (account == null){
 
+        }
     }
 
     /**
