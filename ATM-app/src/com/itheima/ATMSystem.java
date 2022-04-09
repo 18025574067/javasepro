@@ -144,9 +144,11 @@ public class ATMSystem {
             // 2. 提示用户输入取款金额
             System.out.println("请您输入取款金额：");
             double money = sc.nextDouble();
+            // 3. 判断取款是否超过余额
             if(money > acc.getMoney()){
-                System.out.println("对不起，余额不足！");
+                System.out.println("对不起，余额不足！当前余额为：" + acc.getMoney());
             }else {
+                // 4. 判断是否超过当次限额
                 if (money < acc.getQuotaMoney()){
                     System.out.println("取款：" + money + "元，谢谢使用！");
                     acc.setMoney(acc.getMoney() - money);
