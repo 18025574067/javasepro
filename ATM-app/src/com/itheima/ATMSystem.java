@@ -67,8 +67,8 @@ public class ATMSystem {
                     if (acc.getPassWord().equals(passWord)){
                         // 登录成功了
                         System.out.println("恭喜您：" + acc.getUserName() + "先生/女士登录成功，您的卡号为" + acc.getCardId());
-                        // 查询，取款，转账 ...
-                        showUserCommand(sc, acc);
+                        // 可以开始查询，取款，转账 ...
+                        showUserCommand(sc, acc, accounts);
                         return; // 干掉登录方法
                     }else {
                         System.out.println("您输入的密码有误，请重新输入：");
@@ -83,7 +83,7 @@ public class ATMSystem {
     /**
         展示用户操作页
      */
-    private static void showUserCommand(Scanner sc, Account acc) {
+    private static void showUserCommand(Scanner sc, Account acc, ArrayList<Account> accounts) {
         while (true) {
             System.out.println("===============用户操作页=====================");
             System.out.println("1. 查询帐户");
@@ -110,6 +110,7 @@ public class ATMSystem {
                     break;
                 case 4:
                     // 转账操作
+                    transferMoney(acc, sc, accounts);
                     break;
                 case 5:
                     // 修改密码操作
@@ -125,6 +126,15 @@ public class ATMSystem {
                     System.out.println("您的输入有误！");
             }
         }
+    }
+
+    /**
+     * 转账功能实现
+     * @param acc 当前账户
+     * @param sc 扫描器
+     */
+    private static void transferMoney(Account acc, Scanner sc, ArrayList<Account> accounts) {
+
     }
 
     /**
@@ -150,7 +160,9 @@ public class ATMSystem {
             }else {
                 // 4. 判断是否超过当次限额
                 if (money < acc.getQuotaMoney()){
+                    // 可以取款了
                     System.out.println("取款：" + money + "元，谢谢使用！");
+                    // 更新余额
                     acc.setMoney(acc.getMoney() - money);
                     showAccount(acc);
                     return;
