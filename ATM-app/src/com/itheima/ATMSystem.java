@@ -146,13 +146,43 @@ public class ATMSystem {
             System.out.println("对不起，您自己都钱，就别转账了～～");
             return; // 结束当前方法
         }
-        // 3. 真正开始转账
-        System.out.println("请您输入对方卡号：");
-        String cardId = sc.next();
-        // 4. 判断卡号是否存在
-        Account account = getAccountByCardId(cardId, accounts);
-        if (account == null){
-
+        while (true){
+            // 3. 真正开始转账
+            System.out.println("请您输入对方卡号：");
+            String cardId = sc.next();
+            // 4. 判断卡号是否存在
+            Account account = getAccountByCardId(cardId, accounts);
+            if (account == null){
+                System.out.println("该账户不存在！");
+            }else {
+                // 5. 认证对方姓氏
+                if (acc.getCardId().equals(account.getCardId())) {
+                    System.out.println("对不起，您不能给自己转账");
+                    continue;
+                }
+                String userName = account.getUserName();
+                String tip = "*" + userName.substring(1);
+                System.out.println("请您输入[" + tip + "]的姓氏：");
+                String preName = sc.next();
+                if (userName.startsWith(preName)){
+                    while (true){
+                        // 6. 转账并修改余额
+                        System.out.println("请输入转账金额：");
+                        double money = sc.nextDouble();
+                        // 判断余额是否够
+                        if (acc.getMoney() > money){
+                            acc.setMoney(acc.getMoney() - money);
+                            account.setMoney(account.getMoney() + money);
+                            System.out.println("转账成功，您的余额为：" + acc.getMoney());
+                            return;
+                        }else {
+                            System.out.println("您的余额不足");
+                        }
+                    }
+                }else {
+                    System.out.println("对不起，您的输入有误");
+                }
+            }
         }
     }
 
