@@ -114,6 +114,7 @@ public class ATMSystem {
                     break;
                 case 5:
                     // 修改密码操作
+                    updatePassWord(sc, acc);
                     break;
                 case 6:
                     // 退出操作
@@ -124,6 +125,38 @@ public class ATMSystem {
                     break;
                 default:
                     System.out.println("您的输入有误！");
+            }
+        }
+    }
+
+    /**
+     * 修改密码功能实现
+     * @param sc 扫描器
+     * @param acc 当前账户
+     */
+    private static void updatePassWord(Scanner sc, Account acc) {
+        System.out.println("=================用户密码修改=====================");
+        while (true) {
+            System.out.println("请输入原密码：");
+            String passWord = sc.next();
+            // 1. 判断密码是否正确
+            if (acc.getPassWord().equals(passWord)){
+                // 密码正确
+                while (true) {
+                    System.out.println("请您输入新密码：");
+                    String newPassWord = sc.next();
+                    System.out.println("请您再次输入新密码：");
+                    String okPassWord = sc.next();
+                    if (okPassWord.equals(newPassWord)){
+                        // 密码通过认证
+                        acc.setPassWord(okPassWord);
+                        break; // 密码已经正确，退出死循环
+                    }else {
+                        System.out.println("您两次密码不一致！");
+                    }
+                }
+            }else {
+                System.out.println("对不起，密码错误，请重新输入：");
             }
         }
     }
