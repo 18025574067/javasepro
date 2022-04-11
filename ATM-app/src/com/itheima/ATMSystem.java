@@ -86,7 +86,7 @@ public class ATMSystem {
     private static void showUserCommand(Scanner sc, Account acc, ArrayList<Account> accounts) {
         while (true) {
             System.out.println("===============用户操作页=====================");
-            System.out.println("1. 查询帐户");
+            System.out.println("1. 查询账户");
             System.out.println("2. 存款");
             System.out.println("3. 取款");
             System.out.println("4. 转账");
@@ -156,15 +156,17 @@ public class ATMSystem {
                 System.out.println("该账户不存在！");
             }else {
                 // 5. 认证对方姓氏
-                if (acc.getCardId().equals(account.getCardId())) {
+                // 不能是自己的卡号
+                if (cardId.equals(acc.getCardId())) {
                     System.out.println("对不起，您不能给自己转账");
-                    continue;
+                    continue; // 结束当前执行，死循环进入下一次
                 }
                 String userName = account.getUserName();
                 String tip = "*" + userName.substring(1);
                 System.out.println("请您输入[" + tip + "]的姓氏：");
-                String preName = sc.next();
-                if (userName.startsWith(preName)){
+                String surName = sc.next();
+                // 认证姓氏通过，可以转账了
+                if (userName.startsWith(surName)){
                     while (true){
                         // 6. 转账并修改余额
                         System.out.println("请输入转账金额：");
@@ -176,7 +178,7 @@ public class ATMSystem {
                             System.out.println("转账成功，您的余额为：" + acc.getMoney());
                             return;
                         }else {
-                            System.out.println("您的余额不足");
+                            System.out.println("您的余额不足，最多可以转账：" + acc.getMoney());
                         }
                     }
                 }else {
@@ -300,22 +302,22 @@ public class ATMSystem {
         Random r = new Random();
         // 1. 生成 8 位数字
         while (true) {
-            String cardId = "";
+            StringBuilder cardId = new StringBuilder();
             for (int i = 0; i < 8; i++) {
-                cardId += r.nextInt(10);
+                cardId.append(r.nextInt(10));
             }
 
             // 2. 判断这个卡号是否与账户卡号重复了
-            Account acc = getAccountByCardId(cardId, accounts);
+            Account acc = getAccountByCardId(cardId.toString(), accounts);
             if (acc == null){
                 // 说明cardId没有重复，是一个新卡号，可以使用这个卡号作为新注册用户的卡号
-                return cardId;
+                return cardId.toString();
             }
         }
     }
 
     /**
-     * 根据卡号查询一个帐户出来
+     * 根据卡号查询一个账户出来
      * @param cardId 卡号
      * @param accounts 全部账户的集合
      * @return 帐户卡号 | null
