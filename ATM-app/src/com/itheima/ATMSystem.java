@@ -150,7 +150,8 @@ public class ATMSystem {
                     if (okPassWord.equals(newPassWord)){
                         // 密码通过认证
                         acc.setPassWord(okPassWord);
-                        break; // 密码已经正确，退出死循环
+                        System.out.println("密码修改成功。");
+                        return; // 密码已经正确，退出死循环
                     }else {
                         System.out.println("您两次密码不一致！");
                     }
