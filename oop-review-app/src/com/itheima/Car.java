@@ -11,6 +11,7 @@ public class Car {
     }
 
     public void goWith(String name){
+        System.out.println(this);
         // 谁调用了this方法，this 就代表谁
         System.out.println(this.name + "正在和" + name + "比赛");
     }

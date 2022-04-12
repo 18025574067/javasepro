@@ -9,5 +9,6 @@ public class Test2 {
         System.out.println(c.getPrice());
 
         c.goWith("法拉利");
+        System.out.println(c);
     }
 }
