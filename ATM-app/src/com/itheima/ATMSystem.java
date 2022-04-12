@@ -115,18 +115,52 @@ public class ATMSystem {
                 case 5:
                     // 修改密码操作
                     updatePassWord(sc, acc);
-                    break;
+                    System.out.println("请重新登录：");
+                    return;
                 case 6:
                     // 退出操作
                     System.out.println("退出成功，欢迎下次光临～～～");
                     return; // 干掉当前方法
                 case 7:
                     // 销户操作
-                    break;
+                    if (deleteAccount(sc, acc, accounts)){
+                        // 销户成功，回到首面
+                        return;
+                    }else {
+                        // 销户不成功，返回操作页
+                        break;
+                    }
                 default:
                     System.out.println("您的输入有误！");
             }
         }
+    }
+
+    /**
+     * 销户功能
+     * @param sc 扫描器
+     * @param acc 当前账户
+     * @param accounts 所有账户的集合
+     */
+    private static boolean deleteAccount(Scanner sc, Account acc, ArrayList<Account> accounts) {
+        System.out.println("=================账户注销功能=====================");
+        System.out.println("您真的要跑路？ y/n");
+        String rs = sc.next();
+        switch (rs){
+            case "y":
+                // 真正要销户了，从账户集合中删除即可
+                if (acc.getMoney() > 0){
+                    System.out.println("当前账户有余额：" + acc.getMoney() + "，请先取款再销户！");
+                }else {
+                    accounts.remove(acc);
+                    System.out.println("销户成功");
+                    return true;
+                }
+                break;
+            default:
+                System.out.println("好的，当前账户保留。");
+        }
+        return false;
     }
 
     /**
