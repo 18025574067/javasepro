@@ -11,6 +11,7 @@
       <module fileurl="file://$PROJECT_DIR$/helloworld-app/helloworld-app.iml" filepath="$PROJECT_DIR$/helloworld-app/helloworld-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/javasepro.iml" filepath="$PROJECT_DIR$/javasepro.iml" />
       <module fileurl="file://$PROJECT_DIR$/method-app/method-app.iml" filepath="$PROJECT_DIR$/method-app/method-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/oop-review-app/oop-review-app.iml" filepath="$PROJECT_DIR$/oop-review-app/oop-review-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/opp-app/opp-app.iml" filepath="$PROJECT_DIR$/opp-app/opp-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/prictise-app/prictise-app.iml" filepath="$PROJECT_DIR$/prictise-app/prictise-app.iml" />
     </modules>
