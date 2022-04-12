@@ -5,8 +5,14 @@ public class Car {
     private double price;
 
     public Car(String name, double price){
-        name = name;
-        price = price;
+        // this代表了当前对象
+        this.name = name;
+        this.price = price;
+    }
+
+    public void goWith(String name){
+        // 谁调用了this方法，this 就代表谁
+        System.out.println(this.name + "正在和" + name + "比赛");
     }
 
     public String getName() {
