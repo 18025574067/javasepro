@@ -278,7 +278,7 @@ public class ATMSystem {
                 System.out.println("对不起，余额不足！当前余额为：" + acc.getMoney());
             }else {
                 // 4. 判断是否超过当次限额
-                if (money < acc.getQuotaMoney()){
+                if (money <= acc.getQuotaMoney()){
                     // 可以取款了
                     System.out.println("取款：" + money + "元，谢谢使用！");
                     // 更新余额
